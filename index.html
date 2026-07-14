@@ -72,6 +72,23 @@ main{position:relative;z-index:3}
 .hero-scroll::before{content:'';width:1px;height:32px;background:linear-gradient(to bottom,transparent,var(--neon));display:block}
 @keyframes scrollPulse{0%,100%{opacity:.5;transform:translateY(0)}50%{opacity:1;transform:translateY(4px)}}
 
+/* ── Floating hero portrait ── */
+.hero-top-row{display:flex;align-items:center;justify-content:space-between;gap:48px}
+@media(max-width:860px){.hero-top-row{flex-direction:column-reverse;align-items:flex-start;gap:36px}}
+.hero-text-col{flex:1;min-width:0}
+.hero-pic-wrap{position:relative;width:180px;height:180px;flex-shrink:0;animation:heroFloat 5.5s ease-in-out infinite}
+@media(max-width:860px){.hero-pic-wrap{width:140px;height:140px}}
+.hero-pic-ring{position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,var(--neon),var(--purple),var(--green),var(--neon));animation:heroSpin 7s linear infinite;opacity:.85}
+.hero-pic-ring2{position:absolute;inset:-9px;border-radius:50%;border:1px dashed rgba(34,211,238,.25);animation:heroSpin 16s linear infinite reverse}
+.hero-pic-inner{position:absolute;inset:6px;border-radius:50%;overflow:hidden;background:var(--dark);box-shadow:0 0 44px rgba(34,211,238,.3),0 0 90px rgba(168,85,247,.14),inset 0 0 0 1px rgba(255,255,255,.06)}
+.hero-pic-inner img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;filter:contrast(1.08) saturate(.92)}
+.hero-pic-scan{position:absolute;inset:6px;border-radius:50%;overflow:hidden;pointer-events:none;mix-blend-mode:screen}
+.hero-pic-scan::before{content:'';position:absolute;left:0;right:0;top:-45%;height:45%;background:linear-gradient(to bottom,transparent,rgba(34,211,238,.5),transparent);animation:heroScan 3.4s ease-in-out infinite}
+.hero-pic-tag{position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:.15em;color:var(--neon);background:rgba(2,2,12,.92);border:1px solid rgba(34,211,238,.32);padding:3px 11px;border-radius:10px;white-space:nowrap;text-transform:uppercase;z-index:2}
+@keyframes heroFloat{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-14px) rotate(1.2deg)}}
+@keyframes heroSpin{to{transform:rotate(360deg)}}
+@keyframes heroScan{0%{top:-45%}100%{top:100%}}
+
 /* ── Project sections ── */
 .proj-sec{min-height:100vh;display:flex;align-items:center;padding:80px;position:relative;border-top:1px solid var(--border)}
 @media(max-width:768px){.proj-sec{padding:80px 24px}}
@@ -140,6 +157,27 @@ main{position:relative;z-index:3}
 .sec-divider{position:relative;z-index:3;border:none;border-top:1px solid var(--border);margin:0 80px}
 @media(max-width:768px){.sec-divider{margin:0 24px}}
 
+/* ── Education timeline ── */
+.edu-list{display:flex;flex-direction:column;gap:26px}
+.edu-item{position:relative;padding-left:22px;border-left:1.5px solid rgba(34,211,238,.16)}
+.edu-item::before{content:'';position:absolute;left:-5.5px;top:3px;width:9px;height:9px;border-radius:50%;background:var(--neon);box-shadow:0 0 10px rgba(34,211,238,.6)}
+.edu-item:last-child{border-left-color:rgba(168,85,247,.16)}
+.edu-item:last-child::before{background:var(--purple);box-shadow:0 0 10px rgba(168,85,247,.5)}
+.edu-period{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:.12em;color:var(--ink3);text-transform:uppercase;margin-bottom:5px;display:block}
+.edu-degree{font-family:'Orbitron',monospace;font-size:16px;font-weight:700;color:var(--ink);line-height:1.35;margin-bottom:4px}
+.edu-org{font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:.05em;color:var(--neon);margin-bottom:10px}
+.edu-desc{font-size:13px;line-height:1.8;color:var(--ink2)}
+
+/* ── Honours list ── */
+.hon-list{padding:6px 0}
+.hn{display:flex;align-items:flex-start;gap:16px;padding:14px 22px;border-bottom:1px solid rgba(34,211,238,.05);transition:background .2s}
+.hn:last-child{border-bottom:none}
+.hn:hover{background:rgba(34,211,238,.025)}
+.hn-yr{font-family:'Orbitron',monospace;font-size:13px;font-weight:700;color:var(--purple);flex-shrink:0;width:38px;padding-top:1px}
+.hn-body{flex:1}
+.hn-name{font-size:13px;font-weight:600;color:var(--ink);line-height:1.45;margin-bottom:3px}
+.hn-org{font-family:'Share Tech Mono',monospace;font-size:10.5px;color:var(--ink3);letter-spacing:.04em}
+
 /* ── Reveal ── */
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .65s ease,transform .65s ease}
 .reveal.in{opacity:1;transform:none}
@@ -193,11 +231,13 @@ footer a:hover{text-decoration:underline}
   <div class="sn-line"></div>
   <a class="sn-dot" data-label="Microglia" href="#s-03"></a>
   <div class="sn-line"></div>
-  <a class="sn-dot" data-label="ISRO Telemetry" href="#s-04"></a>
+  <a class="sn-dot" data-label="Migraine Patent" href="#s-04"></a>
   <div class="sn-line"></div>
-  <a class="sn-dot" data-label="Migraine Patent" href="#s-05"></a>
+  <a class="sn-dot" data-label="ISRO Telemetry" href="#s-05"></a>
   <div class="sn-line"></div>
   <a class="sn-dot" data-label="Space Cargo" href="#s-06"></a>
+  <div class="sn-line"></div>
+  <a class="sn-dot" data-label="Education" href="#s-07"></a>
 </nav>
 
 <main>
@@ -205,8 +245,18 @@ footer a:hover{text-decoration:underline}
 <!-- ══ HERO ══ -->
 <section id="s-hero">
   <div class="hero-inner">
-    <div class="hero-eyebrow"> Bioinformatician · AI/ML Engineer</div>
-    <h1 class="hero-headline">Nidhi Shakhapur.<br>MRes <em>Bioinformatics</em>.<br>Imperial College London</h1>
+    <div class="hero-top-row">
+      <div class="hero-text-col">
+        <div class="hero-eyebrow"> Bioinformatician · AI/ML Engineer</div>
+        <h1 class="hero-headline">Nidhi Shakhapur.<br>MRes <em>Bioinformatics</em>.<br>Imperial College London</h1>
+      </div>
+      <div class="hero-pic-wrap">
+        <div class="hero-pic-ring2"></div>
+        <div class="hero-pic-ring"></div>
+        <div class="hero-pic-inner"><img src="coder.jpg" alt="Nidhi Shakhapur"></div>
+        <div class="hero-pic-scan"></div>
+      </div>
+    </div>
     <p class="hero-sub">An in-depth look at the research I've contributed to, from annotating 107,461 tumour cells to detecting satellite anomalies for ISRO. Each section breaks down what I built, what I found, and how.</p>
     <div class="hero-chips">
       <span class="hero-chip accent">6 Projects</span>
@@ -438,84 +488,12 @@ footer a:hover{text-decoration:underline}
   </div>
 </section>
 
-<!-- ══ PROJECT 04 — ISRO TELEMETRY ══ -->
+<!-- ══ PROJECT 04 — MIGRAINE PATENT ══ -->
 <section id="s-04" class="proj-sec">
   <div class="proj-bg-num">04</div>
   <div class="proj-inner">
     <div class="proj-toprow reveal">
-      <div><div class="proj-num">04 · Deep Learning · Space Tech</div></div>
-      <div class="proj-meta-right">
-        <span class="proj-period">Nov – Dec 2023</span>
-        <span class="proj-venue">Indian Space Research Organisation (ISRO)</span>
-        <span class="proj-status done">Completed · Internship</span>
-      </div>
-    </div>
-    <div class="proj-headline reveal">Satellite Telemetry<br>Anomaly Detection<br>at ISRO</div>
-    <div class="proj-viz-wrap reveal">
-      <div class="pviz-label">// SATELLITE TELEMETRY — anomaly detection · 200+ channels</div>
-      <canvas class="pviz-canvas" id="pviz-04"></canvas>
-    </div>
-    <div class="proj-split">
-      <div class="reveal-l">
-        <div class="proj-overview-label">Overview</div>
-        <p class="proj-overview-text">Applied deep learning to automate anomaly detection in satellite telemetry streams at ISRO, using real operational data from the satellite. The goal: flag anomalous behaviour across 200+ telemetry channels before it becomes a mission-critical failure.</p>
-        <div class="proj-stats">
-          <div class="pstat"><div class="pstat-n">200+</div><div class="pstat-l">Telemetry Channels</div></div>
-          <div class="pstat"><div class="pstat-n pu">ISRO</div><div class="pstat-l">Real Sat Data</div></div>
-          <div class="pstat"><div class="pstat-n">LSTM</div><div class="pstat-l">+ Transformer</div></div>
-        </div>
-        <div class="proj-tools">
-          <span class="ptool hl">Deep Learning</span><span class="ptool hl">LSTM Autoencoder</span><span class="ptool hl">Python</span><span class="ptool">Transformers</span><span class="ptool">Time Series</span><span class="ptool">Anomaly Detection</span><span class="ptool">ISRO</span>
-        </div>
-      </div>
-      <div class="reveal-r">
-        <div class="proj-contrib-wrap">
-          <div class="pc-header">
-            <span class="pc-label">My Contributions</span>
-            <span class="pc-count">4 key outputs</span>
-          </div>
-          <div class="pc-list">
-            <div class="ci">
-              <div class="ci-mark">&gt;</div>
-              <div class="ci-body">
-                <div class="ci-head">Developed a deep learning model for multivariate telemetry anomaly detection</div>
-                <div class="ci-sub">Built on real satellite data — the model processes multivariate time-series across channels simultaneously to detect correlated anomalies that single-channel methods miss</div>
-              </div>
-            </div>
-            <div class="ci">
-              <div class="ci-mark">&gt;</div>
-              <div class="ci-body">
-                <div class="ci-head">Engineered features across 200+ telemetry channels</div>
-                <div class="ci-sub">Designed cross-channel feature representations that encode temporal dependencies and inter-channel correlations — critical for detecting subtle system-level anomalies</div>
-              </div>
-            </div>
-            <div class="ci">
-              <div class="ci-mark">&gt;</div>
-              <div class="ci-body">
-                <div class="ci-head">Benchmarked LSTM autoencoder vs Transformer architectures</div>
-                <div class="ci-sub">Systematic comparison of reconstruction-error-based anomaly scoring under both architectures, evaluating precision/recall tradeoffs for operational satellite monitoring</div>
-              </div>
-            </div>
-            <div class="ci">
-              <div class="ci-mark">&gt;</div>
-              <div class="ci-body">
-                <div class="ci-head">Worked directly with ISRO and NASA-ISRO SAR Mission teams</div>
-                <div class="ci-sub">Collaborated with mission technical associates to validate model outputs against ground-truth anomaly records from real satellite operations</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ PROJECT 05 — MIGRAINE PATENT ══ -->
-<section id="s-05" class="proj-sec">
-  <div class="proj-bg-num">05</div>
-  <div class="proj-inner">
-    <div class="proj-toprow reveal">
-      <div><div class="proj-num">05 · scRNA-seq · Neurology · Patent</div></div>
+      <div><div class="proj-num">04 · scRNA-seq · Neurology · Patent</div></div>
       <div class="proj-meta-right">
         <span class="proj-period">2024 – 2025 · Capstone Project</span>
         <span class="proj-venue">Vellore Institute of Technology · Dr. Sajitha Lulu</span>
@@ -525,7 +503,7 @@ footer a:hover{text-decoration:underline}
     <div class="proj-headline reveal">Migraine Pathogenesis<br>via scRNA Sequencing<br>— Patent Filed</div>
     <div class="proj-viz-wrap reveal">
       <div class="pviz-label">// PATHWAY NETWORK — DEG enrichment · key gene interactions</div>
-      <canvas class="pviz-canvas" id="pviz-05"></canvas>
+      <canvas class="pviz-canvas" id="pviz-04"></canvas>
     </div>
     <div class="proj-split">
       <div class="reveal-l">
@@ -577,6 +555,78 @@ footer a:hover{text-decoration:underline}
               <div class="ci-body">
                 <div class="ci-head">Filed a patent with the Government of India for the analytical approach</div>
                 <div class="ci-sub">Developed the IP application covering the novel combination of ML methods and scRNA-seq framework for studying neurological disorders at the molecular level</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROJECT 05 — ISRO TELEMETRY ══ -->
+<section id="s-05" class="proj-sec">
+  <div class="proj-bg-num">05</div>
+  <div class="proj-inner">
+    <div class="proj-toprow reveal">
+      <div><div class="proj-num">05 · Deep Learning · Space Tech</div></div>
+      <div class="proj-meta-right">
+        <span class="proj-period">Nov – Dec 2023</span>
+        <span class="proj-venue">Indian Space Research Organisation (ISRO)</span>
+        <span class="proj-status done">Completed · Internship</span>
+      </div>
+    </div>
+    <div class="proj-headline reveal">Satellite Telemetry<br>Anomaly Detection<br>at ISRO</div>
+    <div class="proj-viz-wrap reveal">
+      <div class="pviz-label">// SATELLITE TELEMETRY — anomaly detection · 200+ channels</div>
+      <canvas class="pviz-canvas" id="pviz-05"></canvas>
+    </div>
+    <div class="proj-split">
+      <div class="reveal-l">
+        <div class="proj-overview-label">Overview</div>
+        <p class="proj-overview-text">Applied deep learning to automate anomaly detection in satellite telemetry streams at ISRO, using real operational data from the satellite. The goal: flag anomalous behaviour across 200+ telemetry channels before it becomes a mission-critical failure.</p>
+        <div class="proj-stats">
+          <div class="pstat"><div class="pstat-n">200+</div><div class="pstat-l">Telemetry Channels</div></div>
+          <div class="pstat"><div class="pstat-n pu">ISRO</div><div class="pstat-l">Real Sat Data</div></div>
+          <div class="pstat"><div class="pstat-n">LSTM</div><div class="pstat-l">+ Transformer</div></div>
+        </div>
+        <div class="proj-tools">
+          <span class="ptool hl">Deep Learning</span><span class="ptool hl">LSTM Autoencoder</span><span class="ptool hl">Python</span><span class="ptool">Transformers</span><span class="ptool">Time Series</span><span class="ptool">Anomaly Detection</span><span class="ptool">ISRO</span>
+        </div>
+      </div>
+      <div class="reveal-r">
+        <div class="proj-contrib-wrap">
+          <div class="pc-header">
+            <span class="pc-label">My Contributions</span>
+            <span class="pc-count">4 key outputs</span>
+          </div>
+          <div class="pc-list">
+            <div class="ci">
+              <div class="ci-mark">&gt;</div>
+              <div class="ci-body">
+                <div class="ci-head">Developed a deep learning model for multivariate telemetry anomaly detection</div>
+                <div class="ci-sub">Built on real satellite data — the model processes multivariate time-series across channels simultaneously to detect correlated anomalies that single-channel methods miss</div>
+              </div>
+            </div>
+            <div class="ci">
+              <div class="ci-mark">&gt;</div>
+              <div class="ci-body">
+                <div class="ci-head">Engineered features across 200+ telemetry channels</div>
+                <div class="ci-sub">Designed cross-channel feature representations that encode temporal dependencies and inter-channel correlations — critical for detecting subtle system-level anomalies</div>
+              </div>
+            </div>
+            <div class="ci">
+              <div class="ci-mark">&gt;</div>
+              <div class="ci-body">
+                <div class="ci-head">Benchmarked LSTM autoencoder vs Transformer architectures</div>
+                <div class="ci-sub">Systematic comparison of reconstruction-error-based anomaly scoring under both architectures, evaluating precision/recall tradeoffs for operational satellite monitoring</div>
+              </div>
+            </div>
+            <div class="ci">
+              <div class="ci-mark">&gt;</div>
+              <div class="ci-body">
+                <div class="ci-head">Worked directly with ISRO and NASA-ISRO SAR Mission teams</div>
+                <div class="ci-sub">Collaborated with mission technical associates to validate model outputs against ground-truth anomaly records from real satellite operations</div>
               </div>
             </div>
           </div>
@@ -653,6 +703,93 @@ footer a:hover{text-decoration:underline}
               <div class="ci-body">
                 <div class="ci-head">Presented to ISRO and IIT Delhi judges — ranked national top 10</div>
                 <div class="ci-sub">Delivered the full technical presentation and Q&A to an expert panel — securing a top 10 national ranking from a highly competitive field across India's top technical institutions</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ EDUCATION & ACHIEVEMENTS ══ -->
+<section id="s-07" class="proj-sec">
+  <div class="proj-bg-num">07</div>
+  <div class="proj-inner">
+    <div class="proj-toprow reveal">
+      <div>
+        <div class="proj-num">07 · Academic Record</div>
+      </div>
+      <div class="proj-meta-right">
+        <span class="proj-period">2018 – Present</span>
+        <span class="proj-venue">Imperial College London · VIT</span>
+        <span class="proj-status done">2 Degrees</span>
+      </div>
+    </div>
+    <div class="proj-headline reveal">Education &<br>Achievements</div>
+    <div class="proj-split">
+      <div class="reveal-l">
+        <div class="proj-overview-label">Education</div>
+        <div class="edu-list">
+          <div class="edu-item">
+            <span class="edu-period">2025 – Present</span>
+            <div class="edu-degree">MRes Bioinformatics &amp; Theoretical Systems Biology</div>
+            <div class="edu-org">Imperial College London, South Kensington</div>
+            <p class="edu-desc">Courses: Calculus, Differential Equations, Python, Machine Learning, Deep Learning, Bioinformatics, Genetics. Research: deep learning pipelines for genotype–phenotype prediction using ECG and EHR datasets with Dr. Arunashis Sau.</p>
+          </div>
+          <div class="edu-item">
+            <span class="edu-period">2021 – 2025</span>
+            <div class="edu-degree">BTech Computer Science &amp; Engineering (Bioinformatics)</div>
+            <div class="edu-org">Vellore Institute of Technology, Vellore</div>
+            <p class="edu-desc">CGPA: 8.83/10 · Final Semester GPA: 9.67/10. Capstone: Molecular interactions in Migraine Pathogenesis using scRNA-Sequencing. Courses include DSA, AI, Molecular Biology, Biological Databases, Data Analytics in Bioinformatics.</p>
+          </div>
+        </div>
+        <div class="proj-stats" style="margin-top:24px">
+          <div class="pstat"><div class="pstat-n">9.67</div><div class="pstat-l">Final Sem GPA</div></div>
+          <div class="pstat"><div class="pstat-n pu">8.83</div><div class="pstat-l">CGPA</div></div>
+          <div class="pstat"><div class="pstat-n gr">2</div><div class="pstat-l">Degrees</div></div>
+        </div>
+      </div>
+      <div class="reveal-r">
+        <div class="proj-contrib-wrap">
+          <div class="pc-header">
+            <span class="pc-label">Honours &amp; Achievements</span>
+            <span class="pc-count">5 entries</span>
+          </div>
+          <div class="hon-list">
+            <div class="hn">
+              <div class="hn-yr">2025</div>
+              <div class="hn-body">
+                <div class="hn-name">Top 10 Finalist — National Space Hackathon</div>
+                <div class="hn-org">IIT Delhi & ISRO · AI-driven Smart Space Cargo Management System, selected from hundreds of competing teams</div>
+              </div>
+            </div>
+            <div class="hn">
+              <div class="hn-yr">2024</div>
+              <div class="hn-body">
+                <div class="hn-name">Special Achiever Award &amp; Achiever Award</div>
+                <div class="hn-org">Vellore Institute of Technology · Awarded for exceptional performance representing VIT at international and national-level events</div>
+              </div>
+            </div>
+            <div class="hn">
+              <div class="hn-yr">2024</div>
+              <div class="hn-body">
+                <div class="hn-name">Patent Filed — Government of India</div>
+                <div class="hn-org">IP India · Novel ML approaches in scRNA analysis applied to migraine pathogenesis</div>
+              </div>
+            </div>
+            <div class="hn">
+              <div class="hn-yr">2023</div>
+              <div class="hn-body">
+                <div class="hn-name">Data Analyst &amp; Exoplanet Observer</div>
+                <div class="hn-org">NASA JPL Exoplanet Watch Project · Analysed telescopic data using EXOTIC software on CoRoT-2b transits, contributed observations to AAVSO</div>
+              </div>
+            </div>
+            <div class="hn">
+              <div class="hn-yr">2022</div>
+              <div class="hn-body">
+                <div class="hn-name">2nd Place — SHAASTRA BIOGEN</div>
+                <div class="hn-org">IIT Madras · Presented a CRISPR-based phage vaccine hypothesis at India's premier student technical festival</div>
               </div>
             </div>
           </div>
@@ -754,7 +891,7 @@ footer a:hover{text-decoration:underline}
     camera.lookAt(camTarget);renderer.render(scene,camera);
   })();
 
-  // GSAP scroll camera — 7 states (hero + 6 projects)
+  // GSAP scroll camera — 8 states (hero + 6 projects + education)
   gsap.registerPlugin(ScrollTrigger);
   var camStates=[
     {pos:{x:0,y:0,z:12},tgt:{x:0,y:0,z:0}},
@@ -764,8 +901,9 @@ footer a:hover{text-decoration:underline}
     {pos:{x:4,y:1,z:9},tgt:{x:2,y:0,z:0}},
     {pos:{x:-3,y:2,z:11},tgt:{x:-1,y:1,z:0}},
     {pos:{x:0,y:-1,z:13},tgt:{x:0,y:0,z:0}},
+    {pos:{x:2,y:2,z:10},tgt:{x:1,y:1,z:0}},
   ];
-  ['#s-hero','#s-01','#s-02','#s-03','#s-04','#s-05','#s-06'].forEach(function(sel,i){
+  ['#s-hero','#s-01','#s-02','#s-03','#s-04','#s-05','#s-06','#s-07'].forEach(function(sel,i){
     ScrollTrigger.create({
       trigger:sel,start:'top 55%',
       onEnter:function(){gsap.to(camera.position,Object.assign({},camStates[i].pos,{duration:1.8,ease:'power2.inOut'}));gsap.to(camTarget,Object.assign({},camStates[i].tgt,{duration:1.8,ease:'power2.inOut'}));},
@@ -783,7 +921,7 @@ document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(function(el){re
 
 // ── Side dot nav ──
 var sideDots=document.querySelectorAll('.sn-dot');
-var sections=['s-hero','s-01','s-02','s-03','s-04','s-05','s-06'];
+var sections=['s-hero','s-01','s-02','s-03','s-04','s-05','s-06','s-07'];
 function updateNav(){
   document.getElementById('topbar').classList.toggle('scrolled',window.scrollY>30);
   var cur='s-hero';
@@ -1103,7 +1241,7 @@ document.addEventListener('mousemove',function(e){cgEl.style.left=e.clientX+'px'
   }
 
   // ── Intersection trigger ──
-  var vizMap={'pviz-01':drawUMAP,'pviz-02':startECG,'pviz-03':drawPHATE,'pviz-04':drawTelemetry,'pviz-05':drawPathway,'pviz-06':drawCargo};
+  var vizMap={'pviz-01':drawUMAP,'pviz-02':startECG,'pviz-03':drawPHATE,'pviz-04':drawPathway,'pviz-05':drawTelemetry,'pviz-06':drawCargo};
   var vizObs=new IntersectionObserver(function(entries){
     entries.forEach(function(e){
       if(e.isIntersecting){
